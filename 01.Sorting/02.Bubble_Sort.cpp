@@ -9,6 +9,29 @@ using namespace std;
 
 class Solution {
   public:
+  
+    void bubbleSortUtil(vector<int>& arr , int n){
+        //base case
+        if(n == 1)
+        {
+            return;
+        }
+        
+        int didSwap = 0;
+        for(int i = 0; i <= n-2 ; i++){
+            
+            if(arr[i] > arr[i+1]){
+                swap(arr[i] , arr[i+1]);
+                didSwap++;
+            }
+        }
+        if(didSwap == 0){
+            return;
+        }
+        
+        //recusive call
+        bubbleSortUtil(arr, n-1);
+    }
     // Function to sort the array using bubble sort algorithm.
     void bubbleSort(vector<int>& arr) {
         // Your code here
@@ -18,13 +41,17 @@ class Solution {
         
         
         int n = arr.size();
-        for(int i = n-1 ; i>=1 ; i--){
-            for(int j = 0; j < i;j++){
-                if(arr[j] > arr[j+1]){
-                    swap(arr[j] , arr[j+1]);
-                }
-            }
-        }
+        // for(int i = n-1 ; i>=1 ; i--){
+        //     for(int j = 0; j < i;j++){
+        //         if(arr[j] > arr[j+1]){
+        //             swap(arr[j] , arr[j+1]);
+        //         }
+        //     }
+        // }
+        
+        //Recursive Approach
+        
+        bubbleSortUtil(arr,n);
     }
 };
 
