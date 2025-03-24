@@ -9,19 +9,23 @@
  class Solution {
     public:
         void deleteNode(ListNode* node) {
-            // Approach
+            // Approach 2
+            node->val = node->next->val;
+            node->next = node->next->next;
     
-            while (true) {
+            //Approach 1
     
-                // check if its second last node
-                if (node->next->next == NULL) {
-                    node->val = node->next->val;
-                    node->next = NULL;
-                    return;
-                }
+            // while (true) {
     
-                node->val = node->next->val;
-                node = node ->next;
-            }
+            //     // check if its second last node
+            //     if (node->next->next == NULL) {
+            //         node->val = node->next->val;
+            //         node->next = NULL;
+            //         return;
+            //     }
+    
+            //     node->val = node->next->val;
+            //     node = node ->next;
+            // }
         }
     };
