@@ -70,27 +70,50 @@ class Solution {
   public:
     // Function to reverse a doubly linked list
     DLLNode* reverseDLL(DLLNode* head) {
+        
+        //Approach 2 - No Swapping just interchanging the prev and next ptrs
+        
+       DLLNode* prevx = NULL;
+    DLLNode* nxt = NULL;
+
+    // Traverse the list and swap next and prev pointers
+    while (head != nullptr) {
+        nxt = head->next;  // Save the next node
+
+        head->next = prevx; // Reverse the next pointer
+        head->prev = nxt;    // Reverse the prev pointer
+
+        prevx = head;        // Move prevx forward
+        head = nxt;          // Move head to the next node
+    }
+
+    // prevx is now the new head of the reversed list
+    return prevx;
+        
+        
+        
+        
         // Your code here
         //Approach 1 - traverse to last and then swap last and first
         
         //visit last
-        DLLNode* last = head;
-        DLLNode* first = head;
-        while(last->next != NULL){
-            last = last->next;
-        }
+        // DLLNode* last = head;
+        // DLLNode* first = head;
+        // while(last->next != NULL){
+        //     last = last->next;
+        // }
         
-        //swap
-        while(last->next != first && first != last){
-            int data = first->data;
-            first->data = last -> data;
-            last->data = data;
+        // //swap
+        // while(last->next != first && first != last){
+        //     int data = first->data;
+        //     first->data = last -> data;
+        //     last->data = data;
             
-            first = first->next;
-            last = last->prev;
-        }
+        //     first = first->next;
+        //     last = last->prev;
+        // }
     
-        return head;        
+        // return head;        
     }
 };
 
