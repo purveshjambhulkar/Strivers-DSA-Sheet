@@ -83,25 +83,59 @@ class Solution {
     // Function to sort a linked list of 0s, 1s and 2s.
     Node* segregate(Node* head) {
         
+        
+        //Approach 3 - Optimised
+        Node* temp = head;
+        Node* list0 = new Node(-1);
+        Node* zero = list0;
+        Node* list1 = new Node(-1);
+        Node* one = list1;
+        Node* list2 = new Node(-1);
+        Node* two = list2;
+        
+        while(temp != NULL){
+            if(temp-> data == 0){
+                zero ->next = temp;
+                zero = zero -> next;
+            }else if(temp->data == 1){
+                one->next = temp;
+                one = one->next;
+            }else{
+                two->next= temp;
+                two = two->next;
+            }
+            
+            temp = temp->next;
+        }
+        
+        
+         // Properly connect the three lists
+    zero->next = list1->next ? list1->next : list2->next;
+    one->next = list2->next;
+    two->next = nullptr;  // Important: Ensure the last node terminates
+        
+        return list0->next;
+        
+        
         //Approach 2 - Merge Sort
         
-        // Base case: 0 or 1 nodes
-        if (head == nullptr || head->next == nullptr) {
-            return head;
-        }
+        // // Base case: 0 or 1 nodes
+        // if (head == nullptr || head->next == nullptr) {
+        //     return head;
+        // }
 
-        // Find the midpoint of the list
-        Node* mid = findMid(head);
-        Node* left = head;
-        Node* right = mid->next;
-        mid->next = nullptr; // Split the list into two halves
+        // // Find the midpoint of the list
+        // Node* mid = findMid(head);
+        // Node* left = head;
+        // Node* right = mid->next;
+        // mid->next = nullptr; // Split the list into two halves
 
-        // Recursively sort both halves
-        left = segregate(left);
-        right = segregate(right);
+        // // Recursively sort both halves
+        // left = segregate(left);
+        // right = segregate(right);
 
-        // Merge the sorted halves
-        return mergeList(left, right);
+        // // Merge the sorted halves
+        // return mergeList(left, right);
         
 
         // Add code here
