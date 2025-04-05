@@ -29,7 +29,7 @@ class Solution {
                 }
                 // Right half is sorted
                 else {
-                    if (nums[mid] < target && target <= nums[end]) {
+                    if (nums[mid] <= target && target <= nums[end]) {
                         start = mid + 1;
                     } else {
                         end = mid - 1;
