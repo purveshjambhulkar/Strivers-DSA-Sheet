@@ -9,10 +9,6 @@ class Solution {
     // Function to count inversions in the array.
     int inversionCount(vector<int> &arr) {
         // Your Code Here
-        //Approach 2 - Optimised to o(n)
-        
-        // int n = arr.size();
-        // int count = 0 ;     
         
         
         
