@@ -12,6 +12,13 @@ int findXOR(int n) {
     return 0;
 }
 
+
+// Why do we use findXOR(l - 1)?
+// findXOR(r) gives XOR of numbers from 1 to r.
+
+// findXOR(l - 1) gives XOR of numbers from 1 to l-1.
+
+// By removing the XOR of numbers from 1 to l-1 from XOR(1 to r), we get the XOR from l to r
 int findXORRange(int l, int r) {
     return findXOR(l - 1) ^ findXOR(r);
 }
