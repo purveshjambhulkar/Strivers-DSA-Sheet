@@ -11,6 +11,9 @@ void primeFactors(int n) {
             }
         }
     }
+    if(n > 1) {
+        cout << n << " ";
+    }
 }
 
 int main() {
