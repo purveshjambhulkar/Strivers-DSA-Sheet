@@ -1,28 +1,18 @@
-# 📌 C++ DSA Cheat Sheet - Arrays
-
-## 📋 Array Functions in C++ STL  
-
-| **Function**                      | **Description**            | **Example**                          |
-|-----------------------------------|----------------------------|--------------------------------------|
-| `sort(arr, arr+n)`               | Sorts array.               | `sort(arr, arr+5);`                 |
-| `reverse(arr, arr+n)`            | Reverses array.            | `reverse(arr, arr+5);`              |
-| `max_element(arr, arr+n)`        | Finds max element.         | `*max_element(arr, arr+5);`         |
-| `min_element(arr, arr+n)`        | Finds min element.         | `*min_element(arr, arr+5);`         |
-| `accumulate(arr, arr+n, 0)`      | Sums array elements.       | `accumulate(arr, arr+5, 0);`        |
-| `find(arr, arr+n, x)`            | Finds `x` in array.        | `find(arr, arr+5, 10);`             |
-| `count(arr, arr+n, x)`           | Counts occurrences of `x`. | `count(arr, arr+5, 10);`            |
-| `binary_search(arr, arr+n, x)`   | Checks if `x` exists.      | `binary_search(arr, arr+5, 10);`    |
-| `lower_bound(arr, arr+n, x)`     | First `≥ x` element.       | `lower_bound(arr, arr+5, 10);`      |
-| `upper_bound(arr, arr+n, x)`     | First `> x` element.       | `upper_bound(arr, arr+5, 10);`      |
-| `fill(arr, arr+n, x)`            | Fills array with `x`.      | `fill(arr, arr+5, 0);`              |
-| `copy(arr1, arr1+n, arr2)`       | Copies `arr1` to `arr2`.   | `copy(arr1, arr1+5, arr2);`         |
-| `equal(arr1, arr1+n, arr2)`      | Compares arrays.           | `equal(arr1, arr1+5, arr2);`        |
-| `swap_ranges(arr1, arr1+n, arr2)`| Swaps two arrays.          | `swap_ranges(arr1, arr1+5, arr2);`  |
-| `rotate(arr, arr+k, arr+n)`      | Rotates array left.        | `rotate(arr, arr+2, arr+5);`        |
-| `next_permutation(arr, arr+n)`   | Next permutation.          | `next_permutation(arr, arr+5);`     |
-| `prev_permutation(arr, arr+n)`   | Previous permutation.      | `prev_permutation(arr, arr+5);`     |
-| `unique(arr, arr+n)`             | Removes duplicates.        | `unique(arr, arr+5) - arr;`         |
-
----
-
-Let me know if you need **more topics like Strings, Vectors, Maps**! 🚀
+| **Function / Operation**                        | **Short Syntax (C++)**                                                       |
+|-------------------------------------------------|------------------------------------------------------------------------------|
+| Set the `n`-th bit to 1                         | `num |= (1 << n);`                                                            |
+| Clear the `n`-th bit (set to 0)                 | `num &= ~(1 << n);`                                                           |
+| Toggle the `n`-th bit                          | `num ^= (1 << n);`                                                            |
+| Check if the `n`-th bit is set (1)              | `if (num & (1 << n)) { /* bit is set */ }`                                     |
+| Check if the `n`-th bit is cleared (0)          | `if (!(num & (1 << n))) { /* bit is not set */ }`                             |
+| Count the number of set bits (Hamming weight)   | `int countSetBits(int num) { int count = 0; while (num) { num &= (num - 1); count++; } return count; }` |
+| Find the highest set bit (most significant bit) | `int highestSetBit = log2(num & -num);`                                        |
+| Reverse the bits of a number                    | `unsigned int reverseBits(unsigned int n) { unsigned int reverse = 0; while (n) { reverse = (reverse << 1) | (n & 1); n >>= 1; } return reverse; }` |
+| Check if a number is a power of 2               | `bool isPowerOfTwo(int num) { return (num && !(num & (num - 1))); }`         |
+| Swap two numbers without a temporary variable   | `a ^= b; b ^= a; a ^= b;`                                                     |
+| Get the rightmost set bit                       | `int rightmostSetBit = num & -num;`                                           |
+| Clear all bits after the `n`-th bit (inclusive) | `num &= (1 << n) - 1;`                                                       |
+| Set all bits after the `n`-th bit (inclusive)   | `num |= (~0 << n);`                                                           |
+| Toggle all bits                                 | `num = ~num;`                                                                 |
+| Add 1 to the number (using two's complement)    | `num = num + 1;` or `num = -(-num);`                                          |
+| Get the number of bits required to represent a number | `int bitCount(int num) { return (num == 0) ? 1 : (int)(log2(num)) + 1; }`     |
