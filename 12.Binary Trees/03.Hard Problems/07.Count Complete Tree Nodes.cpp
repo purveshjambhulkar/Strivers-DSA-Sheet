@@ -41,6 +41,7 @@ public:
 
         if (lh == rh)
             return (1 << lh) - 1;
+            //Note - here (1 << lh ) == lh ^ 2;
 
         return 1 + countNodes(root->left) + countNodes(root->right);
     }
