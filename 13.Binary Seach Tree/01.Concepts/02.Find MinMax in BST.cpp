@@ -1,3 +1,6 @@
+// Problem link - https://www.geeksforgeeks.org/problems/minimum-element-in-bst/1
+
+
 // Function to find the minimum element in the given BST.
 
 /* struct Node {
