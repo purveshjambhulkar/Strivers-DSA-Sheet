@@ -1,6 +1,9 @@
 // problem link - https://www.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1
 
 
+// this question is kinda similar to word ladder problem 
+
+
 class Solution {
 public:
     int minimumMultiplications(vector<int>& arr, int start, int end) {
