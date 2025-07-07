@@ -1,12 +1,14 @@
 give me notes on below things in raw md format unrendered code
 explain the approach the problems and also mention the link to go to the problem as well 
 
-## merging based questions
+
+## 
 
 first list all the problems in the list form just the the problem name and the names must be link to the problem and the below we will start the notes of all the problems one by one notes and approach explanation and very detail with steps and walthrough 
 always approaches in correct order like first approach 1 and then 2 and so on
 
 list - 
+
 
 
 
@@ -25,3 +27,7 @@ TC SC
 code 
 
 similarly for all other appaoraches
+
+for code the code for each approach use the code provided in the context only and separate the appoaches form the given code 
+you should give the code with the class and function name as well
+give for all the problems in the list
