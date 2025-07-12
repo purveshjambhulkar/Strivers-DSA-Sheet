@@ -2,137 +2,16 @@ give me notes on below things in raw md format unrendered code
 explain the approach the problems and also mention the link to go to the problem as well 
 
 
-## Conversion Based Problems
+## **Tortoise-Hare / Two Pointer Techniques**
 
 first list all the problems in the list form just the the problem name and the names must be link to the problem and the below we will start the notes of all the problems one by one notes and approach explanation and very detail with steps and walthrough 
 always approaches in correct order like first approach 1 and then 2 and so on
 
 list - 
-Roman to Integer
-String to Integer (atoi)
-
-
 
 
 detialed notes:
-1) Roman to Integer
-link - https://leetcode.com/problems/roman-to-integer
-
-class Solution {
-public:
-    int romanToInt(string s) {
-        unordered_map<char, int> mp = {
-            {'I', 1},   {'V', 5},   {'X', 10},  {'L', 50},
-            {'C', 100}, {'D', 500}, {'M', 1000}};
-
-        //Approach 1 
-
-        int sum = 0;
-        int size = s.length();
-        for(int i =1; i < size ; i++){
-            if(mp[s[i - 1]] < mp[s[i]]){
-                sum -= mp[s[i - 1]];
-            }else if(mp[s[i - 1]] >= mp[s[i]]){
-                sum += mp[s[i - 1]];
-            }
-        }
-        sum += mp[s[size - 1]];
-
-        return sum;
-    }
-};
-
-2)  String to Integer (atoi)
-linjk - https://leetcode.com/problems/string-to-integer-atoi
-
-
-class Solution {
-public:
-    int myAtoiUtil(string s, int sign, long long& ans, int ind) {
-        // Base case: Stop if out of bounds or non-digit
-        if (ind == s.length() || !isdigit(s[ind])) {
-            return sign * ans;
-        }
-
-        // Extract digit
-        int digit = s[ind] - '0';
-
-        // Check overflow before updating ans
-        if (sign == 1 && ans > (INT_MAX - digit) / 10) {
-            return INT_MAX;
-        }
-        if (sign == -1 && ans > (-(long long)INT_MIN - digit) / 10) {
-            return INT_MIN;
-        }
-
-        // Update ans
-        ans = ans * 10 + digit;
-
-        // Recurse to next index
-        return myAtoiUtil(s, sign, ans, ind + 1);
-    }
-    int myAtoi(string s) {
-        // Recursive Approach
-
-        int sign = 1;
-        long long ans = 0;
-
-        // Skip whitespaces
-        int i = 0;
-        while (i < s.length() && s[i] == ' ') {
-            i++;
-        }
-
-        // Check sign
-        if (i < s.length() && s[i] == '-') {
-            sign = -1;
-            i++;
-        } else if (i < s.length() && s[i] == '+') {
-            sign = 1;
-            i++;
-        }
-
-        // Call recursive function with correct index
-        return myAtoiUtil(s, sign, ans, i);
-
-        // int sign = 1;
-        // long long ans = 0;
-
-        // // skip whitespaces
-        // int i = 0;
-        // while (s[i] == ' ') {
-        //     i++;
-        // }
-
-        // // sign check
-        // if ((s[i]) == '-') {
-        //     sign = -1;
-        //     i++;
-        // } else if (s[i] == '+') {
-        //     sign = +1;
-        //     i++;
-        // }
-
-        // for (; i < s.length(); i++) {
-        //     if (isdigit(s[i])) {
-        //         ans = ans * 10 + (s[i] - '0');
-        //         // Handle overflow and underflow immediately
-        //         if (sign == 1 && ans > INT_MAX) {
-        //             return INT_MAX;
-        //         }
-        //         if (sign == -1 && -ans < INT_MIN) {
-        //             return INT_MIN;
-        //         }
-        //     } else {
-        //         break;
-        //     }
-        // }
-
-        // return ans * sign;
-    }
-};
-
-
+1) 
 
 note - give all notes in raw md format unrendered code enclosed in triple ticks
 for explanation use the below format
