@@ -2,17 +2,278 @@ give me notes on below things in raw md format unrendered code
 explain the approach the problems and also mention the link to go to the problem as well 
 
 
-## ****
+## **Backtracking - Constraint Satisfaction Problems (CSPs)**
 
 first list all the problems in the list form just the the problem name and the names must be link to the problem and the below we will start the notes of all the problems one by one notes and approach explanation and very detail with steps and walthrough 
 always approaches in correct order like first approach 1 and then 2 and so on
 
 list -
-
+N-Queens
+Rat in a Maze Problem - I
+Sudoku Solver
+Expression Add Operators
+Word Search
 
 
 detialed notes:
-1)
+1) N-Queens
+link - https://leetcode.com/problems/n-queens
+
+class Solution {
+public:
+    void nQueenUtil(int n, vector<vector<string>>& ans, vector<string> board,
+                    vector<int> rowVisit, vector<int> upperDVisit,
+                    vector<int> lowerDVisit, int col) {
+        // base case
+        if (col == n) {
+            ans.push_back(board);
+            return;
+        }
+
+        for (int row = 0; row < n; row++) {
+
+            if (rowVisit[row] == 0 && upperDVisit[n - 1 + row - col] == 0 &&
+                lowerDVisit[row + col] == 0) {
+
+                board[row][col] = 'Q';
+                rowVisit[row] = 1;
+                upperDVisit[n - 1 + row - col] = 1;
+                lowerDVisit[row + col] = 1;
+
+                // recursive call
+                nQueenUtil(n, ans, board, rowVisit, upperDVisit, lowerDVisit,
+                           col + 1);
+
+                // backtrack
+
+                board[row][col] = '.';
+                rowVisit[row] = 0;
+                upperDVisit[n - 1 + row - col] = 0;
+                lowerDVisit[row + col] = 0;
+            }
+        }
+    }
+
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ans;
+        vector<string> board(n);
+        string str(n, '.');
+        for (int i = 0; i < n; i++) {
+            board[i] = (str);
+        }
+
+        vector<int> rowVisit(n, 0);
+        vector<int> upperDVisit(2 * n - 1, 0);
+        vector<int> lowerDVisit(2 * n - 1, 0);
+
+        nQueenUtil(n, ans, board, rowVisit, upperDVisit, lowerDVisit, 0);
+        return ans;
+    }
+};
+
+
+
+2) Rat in a Maze Problem - I
+link = https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1
+
+
+
+// User function template for C++
+
+class Solution {
+  public:
+    void findPathUtil(vector<vector<int>> &mat,vector<string> &ans, string temp,int n , int row, int col){
+         // Check if out of bounds or on an obstacle
+        if (row < 0 || row >= n || col < 0 || col >= n || mat[row][col] == 0) {
+            return;
+        }
+        
+        // If reached the bottom-right corner, store the path
+        if (row == n - 1 && col == n - 1) {
+            ans.push_back(temp);
+            return;
+        }
+        
+        // Mark cell as visited
+        mat[row][col] = 0;
+        
+        // Move Left
+        findPathUtil(mat, ans, temp + "L", n, row, col - 1);
+        
+        // Move Right
+        findPathUtil(mat, ans, temp + "R", n, row, col + 1);
+        
+        // Move Up
+        findPathUtil(mat, ans, temp + "U", n, row - 1, col);
+        
+        // Move Down (Fixed)
+        findPathUtil(mat, ans, temp + "D", n, row + 1, col);
+        
+        // Backtrack (Unmark the cell)
+        mat[row][col] = 1;
+    }
+  
+    vector<string> findPath(vector<vector<int>> &mat) {
+        // code here
+        vector<string> ans;
+        string temp = "";
+        int n = mat.size();
+        
+        findPathUtil(mat , ans, temp, n , 0 , 0);
+        return ans;
+    }
+};
+
+
+
+
+
+3) Sudoku Solver
+link = https://leetcode.com/problems/sudoku-solver
+
+class Solution {
+public:
+    bool isSafe(vector<vector<char>>& board, int i, int j, char c) {
+        for (int ind = 0; ind < 9; ind++) {
+            // Check the column
+            if (board[ind][j] == c) return false;
+
+            // Check the row
+            if (board[i][ind] == c) return false;
+
+            // Check the 3x3 subgrid
+            int rowStart = 3 * (i / 3) + ind / 3;
+            int colStart = 3 * (j / 3) + ind % 3;
+            if (board[rowStart][colStart] == c) return false;
+        }
+        return true;
+    }
+
+    bool sudokuUtil(vector<vector<char>>& board) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] == '.') {
+                    for (char c = '1'; c <= '9'; c++) {
+                        if (isSafe(board, i, j, c)) {
+                            board[i][j] = c;
+
+                            if (sudokuUtil(board)) {
+                                return true;
+                            } else {
+                                board[i][j] = '.';
+                            }
+                        }
+                    }
+                    return false; // If no number fits, backtrack
+                }
+            }
+        }
+        return true;
+    }
+
+    void solveSudoku(vector<vector<char>>& board) {
+        sudokuUtil(board);
+    }
+};
+
+
+
+4) Expression Add Operators
+link = https://leetcode.com/problems/expression-add-operators
+
+class Solution {
+public:
+    void Util(string& num, int target, vector<string>& ans, long temp, 
+              long prevNum, int index, string s) {
+        // Base case: when we reach the end of the string
+        if (index == num.length()) {
+            if (temp == target) {
+                ans.push_back(s);
+            }
+            return;
+        }
+
+        // Iterate over possible numbers (avoid leading zero cases)
+        for (int i = index; i < num.length(); i++) {
+            string currStr = num.substr(index, i - index + 1);
+            long currNum = stol(currStr);
+
+            // Avoid numbers with leading zeros (except "0" itself)
+            if (i > index && num[index] == '0') break;
+
+            if (index == 0) {
+                // First number, directly add it without an operator
+                Util(num, target, ans, currNum, currNum, i + 1, currStr);
+            } else {
+                // Addition
+                Util(num, target, ans, temp + currNum, currNum, i + 1, s + "+" + currStr);
+                
+                // Subtraction
+                Util(num, target, ans, temp - currNum, -currNum, i + 1, s + "-" + currStr);
+                
+                // Multiplication (handles correct precedence)
+                Util(num, target, ans, temp - prevNum + (prevNum * currNum),
+                     prevNum * currNum, i + 1, s + "*" + currStr);
+            }
+        }
+    }
+
+    vector<string> addOperators(string num, int target) {
+        vector<string> ans;
+        Util(num, target, ans, 0, 0, 0, "");
+        return ans;
+    }
+};
+
+
+
+5) Word Search
+link - https://leetcode.com/problems/word-search
+class Solution {
+public:
+    bool search(vector<vector<char>>& board, string word, int rows, int cols,
+                int i, int j, int index) {
+
+        // base case
+        if (i < rows || i >= rows || j < cols || j >= cols ||
+            word[index] != board[i][j]) {
+            return false;
+        }
+
+        if (index == word.length() - 1) {
+            return true;
+        }
+
+        char ch = board[i][j];
+        word[index] = '*';
+
+        bool res = search(board, word, rows, cols, i + 1, j, index + 1) ||
+                   search(board, word, rows, cols, i, j + 1, index + 1) ||
+                   search(board, word, rows, cols, i - 1, j, index + 1) ||
+                   search(board, word, rows, cols, i, j - 1, index + 1);
+
+        word[index] = ch;
+
+        return res;
+    }
+
+    bool exist(vector<vector<char>>& board, string word) {
+        int rows = board.size();
+        int cols = board[0].size();
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (board[i][j] == word[0]) {
+                    if (search(board, word, rows, cols, i, j, 0)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+};
 
 
 note - give all notes in raw md format unrendered code enclosed in triple ticks
