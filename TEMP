@@ -1,29 +1,51 @@
-give me notes on below things in raw md format unrendered code
-explain the approach the problems and also mention the link to go to the problem as well 
+I want detailed raw markdown notes for a specific DSA pattern.
 
+## 🧠 PATTERN: **<PATTERN NAME>**
 
-## ****
+---
 
-first list all the problems in the list form just the the problem name and the names must be link to the problem and the below we will start the notes of all the problems one by one notes and approach explanation and very detail with steps and walthrough 
-always approaches in correct order like first approach 1 and then 2 and so on
+### ✅ List of Problems
 
-list -
+Please provide the list of problems in **bullet list format** using Markdown, where each problem name is a **clickable link** to the problem. Example:
 
+- [Problem Name](problem_link)
 
-detialed notes:
-1)
+---
 
-note - give all notes in raw md format unrendered code enclosed in triple ticks
-for explanation use the below format
+### 📝 Notes Format for Each Problem
 
-approach 1
-explanation 
+After listing the problems, write detailed notes for **each problem** in the same order as listed. Follow the structure below for **each approach** in every problem:
+
+```
+approach <number>
+explanation
 steps
-TC SC 
-code 
+TC SC
+code
+```
 
-similarly for all other appaoraches
+**Notes Requirements:**
 
-for code the code for each approach use the code provided in the context only and separate the appoaches form the given code 
-you should give the code with the class and function name as well
-give for all the problems in the list
+- Give all notes in **raw markdown format** (unrendered).
+- All code blocks must be enclosed in **triple backticks (```)**.
+- Each problem's notes should start after the list with its heading as:
+
+  ```
+  ## 1) Problem Name
+  🔗 [Problem Link](actual_link_here)
+  ```
+
+- Each approach inside the problem should follow the mentioned format (approach-wise breakdown).
+- If multiple approaches are there, mention in increasing order of efficiency.
+- Use **only the code provided in the context** (don't write your own) and **separate each approach's code properly**.
+- Maintain the **class and function** structure in code as given in the context.
+- Do not mix explanations or code of different approaches.
+
+---
+
+### ⚠️ Important Notes
+
+- Do not render the markdown.
+- Do not summarize or skip approaches.
+- Give walkthrough-like detailed steps for each approach.
+- The output must be 100% markdown compliant and structured for clean copy-paste into a markdown file or editor.
